@@ -28,19 +28,34 @@ imageSections.forEach(section => {
 const hamburgerMenuCheckbox = document.querySelector('.hamburger-menu input');
 const sidebar = document.querySelector('.sidebar');
 const sidebarNav = document.querySelector('.sidebar nav');
+
 hamburgerMenuCheckbox.addEventListener('change', e => {
-  if (e.target.checked) {
-    sidebar.addEventListener('transitionend', () => {
-      sidebarNav.style.display = 'block';
-    }, { once: true });
-    return
+  let transitionHandled = false;
+
+  function handleTransitionEnd() {
+    if (!transitionHandled) {
+      transitionHandled = true;
+      if (e.target.checked) {
+        sidebarNav.style.display = 'block';
+      } else {
+        sidebarNav.classList.remove('fade-out');
+        sidebarNav.style.display = 'none';
+        updateSelectedLi(null, true);
+      }
+    }
   }
+
+  const transitionDuration = getTransitionDuration(sidebar);
+
+  if (e.target.checked) {
+    sidebar.addEventListener('transitionend', handleTransitionEnd, { once: true });
+    setTimeout(handleTransitionEnd, transitionDuration);
+    return;
+  }
+
   sidebarNav.classList.add('fade-out');
-  sidebarNav.addEventListener('transitionend', () => {
-    sidebarNav.classList.remove('fade-out');
-    sidebarNav.style.display = 'none';
-    updateSelectedLi(null, true);
-  }, { once: true });
+  sidebarNav.addEventListener('transitionend', handleTransitionEnd, { once: true });
+  setTimeout(handleTransitionEnd, transitionDuration);
 });
 
 const sidebarListItems = document.querySelectorAll('.sidebar li');
@@ -95,6 +110,12 @@ middleSelectArrow.addEventListener('click', () => {
   const currSelectedLi = document.querySelector('.curr-selected-li');
   currSelectedLi.click();
 });
+
+function getTransitionDuration(element) {
+  const style = window.getComputedStyle(element);
+  const duration = parseFloat(style.transitionDuration || '0s');
+  return duration * 1000;
+}
 
 function updateSelectedLi(item, reset = false) {
   const currSelectedLi = document.querySelector('.curr-selected-li');
