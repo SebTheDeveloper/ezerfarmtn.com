@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
   res.sendFile(join(__dirname, '../../frontend/views/sensory.html'));
 });
 
-router.post('/', (req, res) => {
+router.post('/schedule', (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
   const phoneNumber = req.body.phoneNumber;
@@ -38,8 +38,9 @@ const sendApptConfirmEmail = async ({ name, email, phoneNumber, date, numberOfKi
       from: 'Ezer Farm TN',
       to: email,
       subject: 'Your Upcoming Sensory Play Day on Ezer Farm',
-      text: 'This is a test text thing sent using Nodemailer.',
-      html: '<h1>This is a test email sent using Nodemailer.</h1>'
+      html: `<h1>Hi ${name}, this email is to confirm your scheduled Sensory Play Day on ${date}</h1>
+      <p>We have your contact number as ${phoneNumber} and have the reservation set for ${numberOfKids} kid(s).
+      We look forward to seeing you!</p>`
     });
 
     console.log('Email sent successfully!');

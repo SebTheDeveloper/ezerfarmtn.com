@@ -108,7 +108,12 @@ downArrow.addEventListener('click', () => {
 const middleSelectArrow = document.querySelector('.middle-select');
 middleSelectArrow.addEventListener('click', () => {
   const currSelectedLi = document.querySelector('.curr-selected-li');
-  currSelectedLi.click();
+  if (currSelectedLi.textContent != 'Exit') {
+    currSelectedLi.querySelector('a').click();
+  } else {
+    currSelectedLi.click();
+  }
+
 });
 
 function getTransitionDuration(element) {
