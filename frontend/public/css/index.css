@@ -72,7 +72,7 @@ table {
   --brown: 255, 178, 127;
   --green: 105, 191, 104;
   --offWhite: 240, 240, 240;
-  --darkGrey: 35, 35, 35;
+  --darkGrey: 36, 36, 36;
   --barWidth: 50px;
   --barHeight: 6px;
   --headerLeftRight: 2rem;
@@ -82,10 +82,14 @@ table {
   --animationTiming: 400ms ease-in-out;
   --foreground: rgb(245, 245, 245);
   --background: rgb(var(--darkGrey));
+  --layoutWidth: 65vw;
   scroll-behavior: smooth;
 }
 body {
   background-color: rgb(var(--offWhite));
+}
+main {
+  min-height: 50vh;
 }
 h1, h2, h3 {
   font-family: var(--titleFont);
@@ -107,7 +111,7 @@ span.block:last-of-type {
   opacity: 0.95;
 }
 h2 {
-  font-size: 2rem;
+  font-size: 1.75rem;
 }
 p {
   opacity: 0.95;
@@ -116,25 +120,21 @@ p {
 
 /* Flex containers */
 .hero, .hero-body, main,
-.slider-wrapper, .section, footer {
+.slider-wrapper, .section, footer,
+#schedule form {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-.hero {
-  position: relative;
-  color: rgb(var(--offWhite));
-  background-color: rgb(var(--darkGrey));
-}
 header ul {
   gap: 1rem;
 }
 header {
   box-shadow: 0 4px 2px -2px rgba(141, 141, 141, 0.5);
   position: sticky;
-  z-index: 2;
+  z-index: 5;
   background-color: rgb(var(--darkGrey));
   top: 0;
   width: 100%;
@@ -145,10 +145,13 @@ header {
   padding-top: var(--headerPadding);
   padding-bottom: var(--headerPadding);
 }
-#logo {
-  width: 170px;
+.header-left-logo {
+  display: block;
   margin-right: auto;
   margin-left: var(--headerLeftRight);
+}
+#logo {
+  width: 170px;
 }
 .hamburger-menu:has(input:checked) {
   --background: rgb(var(--darkGrey));
@@ -258,9 +261,10 @@ nav {
   transition: opacity 0.25s ease-in-out;
   animation: fade-from-right 0.4s ease-in-out;
 }
-.sidebar nav img {
+.sidebar nav img#logo {
+  cursor: auto;
   margin-bottom: 5rem;
-  min-width: 200px;
+  min-width: 80%;
 }
 nav li {
   cursor: pointer;
@@ -299,6 +303,11 @@ svg.middle-select {
     transform: translate(50px);
   }
 }
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
 .sidebar li:not(.curr-selected-li) {
   text-shadow: 0 0 3px rgba(var(--blue), 0.8);
   color: rgb(var(--blue));
@@ -326,6 +335,12 @@ nav li.curr-selected-li:active {
 }
 
 /* Hero */
+.hero {
+  position: relative;
+  color: rgb(var(--offWhite));
+  background-color: rgb(var(--darkGrey));
+  padding: 3.5rem 0;
+}
 #green {
   color: rgb(var(--green));
 }
@@ -344,12 +359,26 @@ nav li.curr-selected-li:active {
 #light-purple {
   color: rgb(var(--lightPurple));
 }
-.hero {
-  padding: 3.5rem 0;
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
 }
 .hero-text p {
   max-width: min(500px, 90vw);
   color: rgb(var(--offWhite));
+}
+.hero-img {
+  display: none;
+  max-width: 300px;
+  border-bottom-left-radius: 50%;
+  filter: drop-shadow(2px 3px 10px rgba(0, 0, 0, 0.9)) grayscale(100%);
+  opacity: 0.9;
+  transition: all 0.3s ease-in-out;
+}
+.hero-img:hover {
+  transform: scale(1.03);
+  opacity: 1;
 }
 .right-justified {
   margin-top: 2.5rem;
@@ -360,7 +389,7 @@ button {
   font-size: 1rem;
   padding: .8em 1.2em;
   border-radius: 11px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
 }
 #cta-link {
   display: block;
@@ -461,12 +490,22 @@ button {
 #about {
   padding-top: 1rem;
 }
-.section {
+.sections {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 0;
+  gap: 5rem;
+}
+.section:not(img) {
   gap: 1.3em;
-  transition: all .4s ease-in-out;
-  margin: 3rem 0;
   align-items: start;
   padding: 0 2.5rem;
+}
+.section {
+  transition: all .4s ease-in-out;
+  width: min(100%, 825px);
 }
 .section ul {
   padding: 0 1em;
@@ -482,6 +521,62 @@ button {
 .hidden {
   visibility: hidden;
   opacity: 0;
+  animation: none;
+}
+.picture-set {
+  width: 100%;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+}
+.picture-set > img {
+  cursor: zoom-in;
+  width: min(100%, 325px);
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+.picture-set > img:hover {
+  transform: scale(1.02);
+} 
+.picture-set :nth-child(1) {
+  margin-top: -2.5rem;
+  align-self: flex-end;
+}
+.picture-set :nth-child(2) {
+  align-self: center;
+}
+.picture-set :nth-child(3) {
+  align-self: flex-start;
+  margin-bottom: -2.5rem;
+}
+.section#schedule {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+#schedule button {
+  margin: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.1em;
+  opacity: 0.98;
+  font-family: 'Poppins', sans-serif;
+  padding: .8em 1.4em;
+  letter-spacing: 1px;
+  font-size: 1.25rem;
+  color: rgb(var(--offWhite));
+  background-color:  rgb(var(--blue));
+  border: 1px solid rgba(var(--offWhite), 0.6);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  transition: all 100ms ease-in-out;
+}
+#schedule button:hover {
+  opacity: 1;
+  transform: scale(1.03);
+  background-color: rgb(var(--green));
 }
 footer {
   display: flex;
@@ -490,7 +585,7 @@ footer {
   padding: 2rem 0;
   background-color: rgb(var(--darkGrey));
   color: rgb(var(--offWhite));
-  gap: 1.5rem;
+  gap: 2rem;
   font-size: 1.2rem;
 }
 footer img {
@@ -510,16 +605,154 @@ footer img {
   .sidebar nav img {
     min-width: 300px;
   }
+
+  .inputs input {
+    width: 90%;
+  }
 }
+
+/* Appointment Page */
+
+.appointment {
+  text-align: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../images/ezer-farm-tn.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 2.25rem;
+  width: 100%;
+}
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset 0 0 20vw rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+.appointment form {
+  width: min(90%, 600px);
+  display: grid;
+  align-items: center;
+  border: 2px solid black;
+  box-shadow: 2px 1px 8px rgba(0, 0, 0, 0.7);
+  background-color: rgba(var(--offWhite), 0.98);
+  border-radius: 7px;
+  padding: 2.25rem;
+  animation: fade-from-right 0.6s ease-in-out;
+  gap: 1.75em;
+  z-index: 2;
+}
+.form-title {
+  background: linear-gradient(to right, rgb(7, 7, 7) 53%, rgb(var(--darkGrey)));
+  border-radius: 2px 2px 8px 8px;
+  padding: 1rem;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+  margin-bottom: 0.5rem;
+}
+.appointment h2 {
+  font-family: var(--bodyFont);
+  font-weight: 800;
+  font-size: 1.75rem;
+  letter-spacing: 1px;
+  color: rgb(var(--offWhite));
+}
+.inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0.9;
+  gap: .75em;
+}
+.inputs label {
+  font-weight: bold;
+  line-height: 1.4em;
+}
+.inputs input {
+  padding: 0.75em 1em;
+  text-align: center;
+  flex-basis: 100%;
+  width: 75%;
+}
+.inputs input,
+.appointment button {
+  transition: all 0.2s ease-in-out;
+  border-radius: 6px;
+}
+.appointment button {
+  font-size: 1.1em;
+  margin-top: 0.5rem;
+}
+.appointment button:hover {
+  background-color: rgb(var(--green));
+}
+
 @media screen and (min-width: 600px) {
   h1 {
     font-size: 4rem;
   }
-  .hero-text {
-    display: flex;
-    gap: 2rem;
-  }
   .sidebar ul {
     font-size: 2.25rem;
+  }
+  .section {
+    max-width: var(--layoutWidth);
+  }
+  .form-title {
+    margin-bottom: 1rem;
+  }
+  .appointment h2 {
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  header {
+    padding-left: 10vw;
+  }
+  .hamburger-menu {
+    margin-right: 10vw;
+  }
+  .hero {
+    flex-direction: row;
+    gap: 4rem;
+  }
+  .hero-body {
+    align-items: flex-start;
+    z-index: 1;
+  }
+  #cta-link, .right-justified {
+    margin-left: 0;
+  }
+  .hero-cta {
+    font-size: 1.2em;
+  }
+  .hero-img {
+    display: block;
+  }
+  .stagger-left {
+    margin-left: -5rem;
+  }
+  .stagger-right {
+    margin-right: -5rem;
+  }
+  .full-width {
+    width: 100%;
+    margin-left: 2.5rem;
+  }
+  .picture-set :nth-child(1) {
+    margin-bottom: -5rem;
+    z-index: -1;
+  }
+  .picture-set :nth-child(3) {
+    margin-top: -5rem;
+    z-index: 1;
+  }
+  .appointment {
+    font-size: 1.1rem;
   }
 }

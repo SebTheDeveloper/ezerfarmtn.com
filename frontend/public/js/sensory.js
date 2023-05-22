@@ -1,30 +1,3 @@
-const imageSections = document.querySelectorAll('.section');
-const headerHeight = document.querySelector('header').clientHeight;
-
-const observer = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    const hasBeenIntersecting = entry.target.dataset.hasBeenIntersecting === 'true';
-  
-      if (entry.isIntersecting) {
-        if (!hasBeenIntersecting) {
-          entry.target.classList.remove('hidden');
-          entry.target.dataset.hasBeenIntersecting = 'true';
-        } else {
-          entry.target.classList.remove('hidden');
-        }
-      } else {
-        entry.target.classList.add('hidden');
-      }
-  });
-}, {
-  rootMargin: `-${headerHeight}px 0px 0px 0px`,
-  threshold: .7
-});
-
-imageSections.forEach(section => {
-  observer.observe(section);
-});
-
 const hamburgerMenuCheckbox = document.querySelector('.hamburger-menu input');
 const sidebar = document.querySelector('.sidebar');
 const sidebarNav = document.querySelector('.sidebar nav');
@@ -137,3 +110,31 @@ function updateSelectedLi(item, reset = false) {
     sessionLi.classList.add('curr-selected-li');
   }
 };
+
+const imageSections = document.querySelectorAll('.section');
+const headerHeight = document.querySelector('header').clientHeight;
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    const hasBeenIntersecting = entry.target.dataset.hasBeenIntersecting === 'true';
+  
+      if (entry.isIntersecting) {
+        if (!hasBeenIntersecting) {
+          entry.target.classList.remove('hidden');
+          entry.target.dataset.hasBeenIntersecting = 'true';
+        } else {
+          entry.target.classList.remove('hidden');
+        }
+      } else {
+        entry.target.classList.add('hidden');
+      }
+  });
+}, {
+  rootMargin: `-${headerHeight}px 0px 0px 0px`,
+  threshold: .5
+});
+
+imageSections.forEach(section => {
+  observer.observe(section);
+});
+

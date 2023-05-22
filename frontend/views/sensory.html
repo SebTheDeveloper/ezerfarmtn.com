@@ -12,9 +12,9 @@
   <script defer src="js/sensory.js"></script>
   <title>Sensory Play Days on Ezer Farm</title>
 </head>
-<body>
+<body id="top">
   <header>
-    <img src="images/logo-no-background.svg" alt="Ezer Farm TN Logo" id="logo">
+    <a href="#top" class="header-left-logo"><img src="images/logo-no-background.svg" alt="Ezer Farm TN Logo" id="logo"></a>
     <label class="hamburger-menu">
       <input type="checkbox" id="sidebar-x-icon" role="button" aria-label="Toggle navigation menu">
     </label>
@@ -25,9 +25,9 @@
 
         <ul>
           <li data-index="0" id="first-li"><a href="#about">About</a></li>
-          <li data-index="1">Contact Us</li>
-          <li data-index="2" class="curr-selected-li session-li"><a href="#schedule">Schedule a Session</a></li>
-          <li data-index="3">Learn More</li>
+          <li data-index="1"><a href="mailto:ezerfarm@yahoo.com">Contact Us</a></li>
+          <li data-index="2" class="curr-selected-li session-li"><a href="/sensory/schedule">Schedule a Session</a></li>
+          <li data-index="3"><a href="#learn-more">Learn More</a></li>
           <li data-index="4" id="exit-sidebar">Exit</li>
         </ul>
 
@@ -48,15 +48,16 @@
     <div class="hero-body">
       <div class="hero-text">
         <h1>
-        <span class="block"><span id="blue">S</span><span id="brown">e</span><span id="green">n</span><span id="light-purple">s</span><span id="yellow">o</span><span id="blue">r</span><span id="brown">y</span> <span id="brown">P</span><span id="green">l</span><span id="light-purple">a</span><span id="yellow">y</span> <span id="green">D</span><span id="light-purple">a</span><span id="yellow">y</span><span id="blue">s</span></span>
+        <span class="block"><span id="blue">S</span><span id="brown">e</span><span id="green">n</span><span id="light-purple">s</span><span id="yellow">o</span><span id="blue">r</span><span id="brown">y</span> <span id="brown">P</span><span id="green">l</span><span id="light-purple">a</span><span id="yellow">y</span> <span id="blue">D</span><span id="light-purple">a</span><span id="yellow">y</span><span id="green">s</span></span>
         <span class="block">
-          <span id="light-purple">O</span><span id="yellow">n</span> <span id="blue">E</span><span id="brown">z</span><span id="green">e</span><span id="light-purple">r</span> <span id="brown">F</span><span id="green">a</span><span id="light-purple">r</span><span id="yellow">m</span>
+          <span id="light-purple">o</span><span id="yellow">n</span> <span id="blue">E</span><span id="brown">z</span><span id="green">e</span><span id="light-purple">r</span> <span id="brown">F</span><span id="green">a</span><span id="light-purple">r</span><span id="yellow">m</span>
         </span>
       </h1>
         <p>Training for homeschooling moms/dads to help your child with motor coordination, sensory processing, social and emotional learning, fine motor skills and more.</p>
       </div>
-      <a href="#schedule" id="cta-link"><button class="hero-cta right-justified">Schedule a Session</button></a>
+      <a href="/sensory/schedule" id="cta-link"><button class="hero-cta right-justified">Schedule a Session</button></a>
     </div>
+    <img src="../images/sensory-corn.jpg" alt="Ezer Farm Logo" class="hero-img">
   </div>
   
   <main>
@@ -64,54 +65,52 @@
     <div class="slider-wrapper">
       <div class="image-slider">
         <img src="images/alpaca-group.jpg" alt="Ezer Farm Slideshow">
-        <img src="images/feeding-goat.jpg" alt="alpaca-group">
         <img src="images/opening-paint.jpg" alt="Fun with Paint">
-        <img src="images/feeding-mini-horse-front.jpg" alt="Feeding Mini-Horse">
-        <img src="images/friendly-alpaca.jpg" alt="Friendly Alpaca">
         <img src="images/feeding-mini-horse.jpg" alt="Feeding Mini Horse">
+        <img src="images/friendly-alpaca.jpg" alt="Friendly Alpaca">
+        <img src="images/feeding-mini-horse-front.jpg" alt="Feeding Mini-Horse">
+        <img src="images/feeding-goat.jpg" alt="alpaca-group">
       </div>
     </div>
-    <div class="section hidden">
-      <h2>Sensory Play Days</h2>
-      <p>This is for our homeschooling moms and anyone interested in learning more about teaching pre-writing, visual perceptual skills, fine motor skills, the role of the sensory system in learning and regulating emotions and behaviors, and its positive effect on attention, learning and executive functioning skills.</p>
-    </div>
-    <div class="section hidden">
-      <h2>My Experience</h2>
-      <p>I have been an Occupational Therapist for 26 years and I've taught many teachers and educators tools for multi-sensory learning and success for children for school skills. I used to own my own handwriting clinic, because I realized how much self-esteem building there was in a child's ability to express themselves without limitations.</p>
-    </div>
-    <div class="section hidden">
-      <h2>Bi-Monthly Sessions</h2>
-      <p>Beginning in May, I will be holding bi-monthly "Sensory Play Fridays" at the farm and incorporating the animals - we have alpacas, goats, bunnies and mini-horses! While the children have some free play time, I want to teach you, "their educators" strategies for handwriting, visual motor skills, and all the areas mentioned above. It all starts with the right habits, so you don't have to "fix" those later. Click <a href="#schedule">here</a> to schedule a session.</p>
-    </div>
-    <div class="section hidden">
-      <h2>What to Expect</h2>
-      <ul>
-        <li>Important: Parents stay with their children.</li>
-        <li>Bring clothes and shoes that can get very messy or wet at times</li>
-        <li>Bring snacks and drinks for the kids, there will be picnic tables available</li>
-        <li>2 hours of play on the farm playground, animal interactions for sensory, and sensory play activities</li>
-        <li>$15 per family for 2 hour slot (Mom/Dad plus all kids from the family)  </li>
-      </ul>
-    </div>
-    <div class="section" id="schedule">
-      <form action="/sensory/schedule" method="post">
-        <label for="name"></label>
-        <input type="text" placeholder="Your Name" name="name" id="name">
-        <label for="email"></label>
-        <input type="email" placeholder="Your Email" name="email" id="email">
-        <label for="phoneNumber"></label>
-        <input type="text" placeholder="Your Phone Number" name="phoneNumber" id="phoneNumber">
-        <label for="date"></label>
-        <input type="date" name="date" id="date">
-        <label for="numberOfKids"></label>
-        <input type="number" placeholder="Number Of Kids" name="numberOfKids" id="numberOfKids">
-        <button type="submit">Submit</button>
-      </form>
+    <div class="sections">
+      <div class="section hidden stagger-left">
+        <h2>Sensory Play Days</h2>
+        <p>This is for our homeschooling moms and anyone interested in learning more about teaching pre-writing, visual perceptual skills, fine motor skills, the role of the sensory system in learning and regulating emotions and behaviors, and its positive effect on attention, learning and executive functioning skills. Click <a href="/sensory/schedule">here</a> to schedule a session.</p></p>
+      </div>
+      <div class="section hidden">
+        <h2>My Experience</h2>
+        <p>I have been an Occupational Therapist for 26 years and I've taught many teachers and educators tools for multi-sensory learning and success for children for school skills. I used to own my own handwriting clinic, because I realized how much self-esteem building there was in a child's ability to express themselves without limitations.</p>
+      </div>
+      <div class="section hidden stagger-right">
+        <h2>Fun with Animals</h2>
+        <p>Beginning in May, I will be holding bi-monthly "Sensory Play Days" at the farm and incorporating the animals - we have alpacas, goats, bunnies and mini-horses! While the children have some free play time, I want to teach you, "their educators" strategies for handwriting, visual motor skills, and all the areas mentioned above. It all starts with the right habits, so you don't have to "fix" those later.
+      </div>
+      <div class="picture-set">
+        <img src="images/petting-alpaca.jpg" alt="Fun with the Alpacas" class="section hidden">
+        <img src="images/handwriting.jpg" alt="Benefits of Handwriting Illustration" class="section hidden">
+        <img src="images/girl-petting-alpaca-800x800.jpg" alt="Benefits of Handwriting Illustration" id="learn-more" class="section hidden">
+      </div>
+      <div class="section hidden full-width">
+        <h2>What to Expect</h2>
+        <ul>
+          <strong><em><li>Important: Parents stay with their children.</li></em></strong>
+          <li>Bring clothes and shoes that can get very messy or wet at times</li>
+          <li>Bring snacks and drinks for the kids, there will be picnic tables available</li>
+          <li>2 hours of play on the farm playground, animal interactions for sensory, and sensory play activities</li>
+          <li>$20 per family for 2 hour slot (Mom/Dad plus all kids from the family)</li>
+        </ul>
+      </div>
+      <div id="schedule" class="section">
+        <a href="/sensory/schedule">
+          <button>Schedule a Play Day</button>
+        </a>
+      </div>
     </div>
   </main>
   <footer id="about">
-    <a href="#"><img src="images/ezer-farm-logo-324x409.png" alt="Ezer Farm Logo" class="logo"></a>
-    Copyright © 2023 - Ezer Farm TN
+    <a href="#top"><img src="images/ezer-farm-logo-324x409.png" alt="Ezer Farm Logo" class="logo"></a>
+    <p style="font-size: 0.8em;">Have Questions? <span style="font-weight: bold;margin-left: 1rem;"><a href="mailto:ezerfarm@yahoo.com">Send Us an Email</a></span></p>
+    <p>Copyright © 2023 - Ezer Farm TN</p>
   </footer>
 </body>
 </html>
