@@ -359,6 +359,9 @@ nav li.curr-selected-li:active {
 #light-purple {
   color: rgb(var(--lightPurple));
 }
+.hero-body {
+  animation: fade-from-right 0.5s ease-in-out;
+}
 .hero-text {
   display: flex;
   flex-direction: column;
@@ -539,18 +542,21 @@ button {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 .picture-set > img:hover {
-  transform: scale(1.02);
+  transform: scale(1.05);
 } 
 .picture-set :nth-child(1) {
+  z-index: 0;
   margin-top: -2.5rem;
   align-self: flex-end;
 }
 .picture-set :nth-child(2) {
   align-self: center;
+  z-index: 1;
 }
 .picture-set :nth-child(3) {
   align-self: flex-start;
   margin-bottom: -2.5rem;
+  z-index: 2;
 }
 .section#schedule {
   display: flex;
@@ -635,7 +641,6 @@ footer img {
   z-index: 1;
 }
 .appointment form {
-  width: min(90%, 600px);
   display: grid;
   align-items: center;
   border: 2px solid black;
@@ -673,26 +678,33 @@ footer img {
   font-weight: bold;
   line-height: 1.4em;
 }
-.inputs input {
+.inputs input,
+.inputs select {
   padding: 0.75em 1em;
   text-align: center;
   flex-basis: 100%;
+  border: 1px solid black;
   width: 75%;
 }
 .inputs input,
+.inputs select,
 .appointment button {
   transition: all 0.2s ease-in-out;
-  border-radius: 6px;
+  border-radius: 5px;
 }
 .appointment button {
   font-size: 1.1em;
+  font-weight: bold;
   margin-top: 0.5rem;
+  background-color: rgb(var(--blue));
+  color: rgb(var(--offWhite));
+  border: 1px solid rgb(var(--offWhite));
 }
 .appointment button:hover {
   background-color: rgb(var(--green));
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 650px) {
   h1 {
     font-size: 4rem;
   }
@@ -703,7 +715,13 @@ footer img {
     max-width: var(--layoutWidth);
   }
   .form-title {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .appointment form {
+    width: min(90%, 600px);
+  }
+  .appointment button {
+    margin-top: 1rem;
   }
   .appointment h2 {
     font-size: 2.5rem;
@@ -746,11 +764,9 @@ footer img {
   }
   .picture-set :nth-child(1) {
     margin-bottom: -5rem;
-    z-index: -1;
   }
   .picture-set :nth-child(3) {
     margin-top: -5rem;
-    z-index: 1;
   }
   .appointment {
     font-size: 1.1rem;

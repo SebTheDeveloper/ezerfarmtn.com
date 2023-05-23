@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;600;700&family=Poppins:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/index.css">
   <script defer src="../js/sensory.js"></script>
+  <script defer src="../js/schedule.js"></script>
   <title>Schedule a Sensory Play Day</title>
 </head>
 <body id="top">
@@ -59,7 +60,7 @@
         </div>
         <div class="inputs">
           <label for="numberOfKids">Number of Kids Attending</label>
-          <input required type="number" id="numberOfKids" placeholder="Enter a Number">
+          <input required type="number" id="numberOfKids" placeholder="Enter a Number" name="numberOfKids">
         </div>
         <div class="inputs">
           <label for="email">Your Email</label>
@@ -67,13 +68,15 @@
         </div>
         <div class="inputs">
           <label for="phoneNumber">Your Phone Number</label>
-          <input required type="text" id="phoneNumber" placeholder="Your Phone Number" name="phoneNumber">
+          <input required type="text" id="phoneNumber" placeholder="Your Phone Number" name="phoneNumber" minlength="10" maxlength="11">
         </div>
         <div class="inputs">
-          <label for="date">Pick a Day</label>
-          <div id="available-dates"></div>
+          <label for="date">Choose a Play Day</label>
+          <select required name="date" id="date">
+            <option value="6-1-2023">Thursday, June 1st 2023</option>
+          </select>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit">SUBMIT</button>
       </form>
     </div>
   </main>
