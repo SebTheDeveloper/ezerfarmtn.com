@@ -26,6 +26,10 @@ app.get('/contact', (req, res) => {
   res.send('This page is a work in progress');
 });
 
+app.get('/admin', (req, res) => {
+  res.send('This page is a work in progress');
+});
+
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });

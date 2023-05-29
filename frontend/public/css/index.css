@@ -653,7 +653,7 @@ footer img {
   z-index: 2;
 }
 .form-title {
-  background: linear-gradient(to right, rgb(7, 7, 7) 53%, rgb(var(--darkGrey)));
+  background: linear-gradient(to bottom, rgb(7, 7, 7) 75%, rgba(7,7,7, 0.8));
   border-radius: 2px 2px 8px 8px;
   padding: 1rem;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
@@ -684,7 +684,7 @@ footer img {
   text-align: center;
   flex-basis: 100%;
   border: 1px solid black;
-  width: 75%;
+  width: 90%;
 }
 .inputs input,
 .inputs select,
@@ -702,6 +702,70 @@ footer img {
 }
 .appointment button:hover {
   background-color: rgb(var(--green));
+}
+.loading-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: none;
+}
+.load-wheel {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 17px solid rgba(0, 0, 0, 0.9);
+  border-right-color: white;
+  animation: loading-animation 1s linear infinite;
+}
+@keyframes loading-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Success page */
+.success-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 4rem 0.5rem!important;
+}
+.h2 {
+  margin-bottom: 1.5rem;
+  padding: 0 1.75rem;
+  font-size: clamp(1rem, 6vw, 2.3rem);
+  line-height: 1.85rem;
+}
+#selected-play-day {
+  display: block;
+}
+#manage-reservation {
+  margin-top: 1.5rem;
+  align-items: center;
+}
+@media screen and (min-width: 500px) {
+  .form-title {
+    background: linear-gradient(to right, rgb(7, 7, 7) 53%, rgb(var(--darkGrey)));
+  }
+  .inputs input,
+  .inputs select {
+    width: 75%;
+  }
+  .h2 {
+    line-height: 2.25rem;
+  }
+  #selected-play-day {
+    display: inline-block;
+  }
 }
 
 @media screen and (min-width: 650px) {
@@ -725,6 +789,16 @@ footer img {
   }
   .appointment h2 {
     font-size: 2.5rem;
+  }
+  .success-page {
+    gap: 1.25rem;
+  }
+  #manage-reservation {
+    align-items: end;
+  }
+  .success-page .section {
+    max-width: 90vw;
+    align-items: center;
   }
 }
 
@@ -770,5 +844,8 @@ footer img {
   }
   .appointment {
     font-size: 1.1rem;
+  }
+  .h2 {
+    line-height: 3rem;
   }
 }

@@ -1,5 +1,5 @@
 import sendEmail from '../utils/sendEmail.js';
-import scheduleDB from '../models/scheduleDB.js';
+import scheduleAppointment from '../utils/scheduleAppointment.js';
 import { config } from 'dotenv';
 config();
 
@@ -8,9 +8,9 @@ export default async function confirmAppt ({ name, email, phoneNumber, date, num
 
     if (Number(numberOfKids) !== 0) {
 
-      const isValid = await scheduleDB({ name, email, phoneNumber, date, numberOfKids });
+      const documentID = await scheduleAppointment({ name, email, phoneNumber, date, numberOfKids });
 
-      if (isValid) {
+      if (documentID) {
         await sendEmail({
           from: 'Ezer Farm TN',
           to: email,
@@ -19,16 +19,16 @@ export default async function confirmAppt ({ name, email, phoneNumber, date, num
             <h1 style="font-family: 'Arial';font-size:18px;">Hi ${name},</h1>
             <p style="font-family: 'Arial';font-size:18px;">This email is to confirm your scheduled Sensory Play Day for ${numberOfKids} on ${date}.
             </p>
-            <p>We look forward to seeing you!</p>
+            <p style="font-family: 'Arial';font-size:18px;">We look forward to seeing you!</p>
             <br />
+            <a href="ezerfarmtn.com/sensory/manage-reservation?id=${documentID}&date=${date}"><button style="padding: 12px 16px;">Manage My Reservation</button></a>
           `
         });
-        console.log(`Email to ${name} at ${email} sent successfully!`);
   
         await sendEmail({
           from: 'Ezer Farm TN',
           to: process.env.NOTIFICATION_EMAIL,
-          subject: `*NEW PLAY DAY REQUEST* from ${name}`,
+          subject: `*NEW PLAY DAY RESERVATION* from ${name}`,
           html: `
             <p style="font-family: 'Arial';font-size:18px;">
             ${name} just scheduled a Sensory Play Day on ${date} for ${numberOfKids} kid(s).
@@ -40,11 +40,11 @@ export default async function confirmAppt ({ name, email, phoneNumber, date, num
             <br />
           `
         });
-        console.log(`Appointment confirmation for ${name} at ${email} sent successfully!`);
+        console.log(`Appointment confirmation emails for ${name} at ${email} sent successfully!`);
 
-        return true
+        return documentID;
       } else {
-        return false
+        return false;
       }
 
     }

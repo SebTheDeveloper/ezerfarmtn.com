@@ -4,19 +4,15 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;600;700&family=Poppins:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/index.css">
   <script defer src="../js/sensory.js"></script>
-  <script defer src="../js/schedule.js"></script>
-  <title>Schedule a Sensory Play Day</title>
+  <title>Date Not Available, Please Select a Different Day</title>
 </head>
 <body id="top">
-  <div class="loading-circle">
-    <div class="load-wheel"></div>
-  </div>
   <header>
     <a href="/sensory" class="header-left-logo"><img src="../images/logo-no-background.svg" alt="Ezer Farm TN Logo" id="logo"></a>
     <label class="hamburger-menu">
@@ -28,10 +24,10 @@
         <img src="../images/logo-no-background.svg" alt="Ezer Farm TN Logo" id="logo">
 
         <ul>
-          <li data-index="0" id="first-li"><a href="/sensory">Home</a></li>
+          <li data-index="0" id="first-li"><a href="/sensory#about">About</a></li>
           <li data-index="1"><a href="mailto:ezerfarm@yahoo.com">Contact Us</a></li>
-          <li data-index="2" class="curr-selected-li session-li"><a href="/sensory/schedule">Schedule a Session</a></li>
-          <li data-index="3"><a href="/sensory#about">Learn More</a></li>
+          <li data-index="2" class="curr-selected-li session-li"><a href="../sensory/schedule">Schedule a Session</a></li>
+          <li data-index="3"><a href="/sensory#learn-more">Learn More</a></li>
           <li data-index="4" id="exit-sidebar">Exit</li>
         </ul>
 
@@ -49,39 +45,9 @@
     </aside>
   </header>
   <main>
-    <div class="appointment">
-      <div class="background-overlay"></div>
-      <form action="/sensory/schedule" method="post">
-        <div class="form-title">
-          <h2>
-            Schedule a <span id="blue">P</span><span id="green">l</span><span id="light-purple">a</span><span id="yellow">y</span> <span id="brown">D</span><span id="light-purple">a</span><span id="blue">y</span>
-          </h2>
-        </div>
-        <div class="inputs">
-          <label for="name">Your Name</label>
-          <input required type="text" id="name" placeholder="Your Full Name" name="name">
-        </div>
-        <div class="inputs">
-          <label for="numberOfKids">Number of Kids Attending</label>
-          <input required type="number" id="numberOfKids" placeholder="Enter a Number" name="numberOfKids">
-        </div>
-        <div class="inputs">
-          <label for="email">Your Email</label>
-          <input required type="email" id="email" placeholder="Your Email Address" name="email">
-        </div>
-        <div class="inputs">
-          <label for="phoneNumber">Your Phone Number</label>
-          <input required type="text" id="phoneNumber" placeholder="Your Phone Number" name="phoneNumber" minlength="10" maxlength="11">
-        </div>
-        <div class="inputs">
-          <label for="date">Choose a Play Day</label>
-          <select required name="date" id="date">
-            <option value="6-1-2023">Thursday, June 1st 2023</option>
-            <option value="6-23-2023">Friday, June 23rd 2023</option>
-          </select>
-        </div>
-        <button type="submit">SUBMIT</button>
-      </form>
+    <div class="section hidden" style="align-items: center;text-align: center;">
+      <p>Unfortunately, that date is full. Please select another date</p>
+      <a href="/sensory/schedule" style="text-decoration: underline;font-weight: bold;">Go Back</a>
     </div>
   </main>
   <footer id="about">

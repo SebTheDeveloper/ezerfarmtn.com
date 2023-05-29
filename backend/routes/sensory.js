@@ -2,6 +2,7 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import confirmAppt from '../controllers/confirmAppt.js';
+import getAppointmentInfo from '../controllers/getAppointmentInfo.js';
 
 const router = express.Router();
 
@@ -31,20 +32,31 @@ router.post('/schedule', async (req, res) => {
     numberOfKids,
   };
 
-  const isConfirmed = await confirmAppt(apptInformation);
-  if (isConfirmed) {
-    res.status(200).redirect('/sensory/confirmed');
+  const documentID = await confirmAppt(apptInformation);
+  if (documentID) {
+    res.status(200).redirect(`/sensory/scheduled-successfully?id=${documentID}&date=${date}`);
   } else {
     res.status(400).redirect('/sensory/nothing-available')
   }
 });
 
-router.get('/confirmed', (req, res) => {
-  res.send('Your Sensory Play Day has been Scheduled! Check your email for confirmation');
+router.get('/scheduled-successfully', (req, res) => {
+  res.sendFile(join(__dirname, '../../frontend/views/successful-scheduling.html'));
 });
 
 router.get('/nothing-available', (req, res) => {
-  res.send('Unfortunately, we do not have any more availability on these dates. Please contact us for more information');
+  res.sendFile(join(__dirname, '../../frontend/views/nothing-available.html'));
+});
+
+router.get('/manage-reservation', (req, res) => {
+  res.sendFile(join(__dirname, '../../frontend/views/manage-reservation.html'));
+});
+
+router.post('/get-play-day-info', async (req, res) => {
+  const { date, appointmentID } = req.body;
+  const apptInfo = await getAppointmentInfo(appointmentID);
+
+  res.json(apptInfo);
 });
 
 export default router;
