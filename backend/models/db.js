@@ -10,13 +10,14 @@ const client = new MongoClient(uri, {
   useUnifiedTopology: true
 });
 
-let schedule;
+let schedule, archive;
 
 async function startDatabase() {
   try {
     await client.connect();
     const database = client.db('ezerfarmtn');
     schedule = database.collection('schedule');
+    archive = database.collection('archive');
     console.log("Connected to MongoDB successfully");
   } catch(err) {
     console.error("Failed to connect to MongoDB", err);
@@ -25,4 +26,4 @@ async function startDatabase() {
 
 await startDatabase();
 
-export { schedule }
+export { schedule, archive }

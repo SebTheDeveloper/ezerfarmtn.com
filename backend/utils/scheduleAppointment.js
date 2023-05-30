@@ -1,4 +1,4 @@
-import { schedule } from '../models/db.js';
+import { schedule, archive } from '../models/db.js';
 
 export default async function scheduleAppointment({ name, email, phoneNumber, date, numberOfKids }) {
   try {
@@ -12,6 +12,7 @@ export default async function scheduleAppointment({ name, email, phoneNumber, da
     if (!isFullyBooked) {
       const result = await schedule.insertOne(AppointmentInfo);
       console.log(result);
+      await archive.insertOne(AppointmentInfo);
       return result.insertedId;
     }
     return false;

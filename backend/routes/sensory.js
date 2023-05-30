@@ -2,7 +2,8 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import confirmAppt from '../controllers/confirmAppt.js';
-import getAppointmentInfo from '../controllers/getAppointmentInfo.js';
+import getAppointmentInfo from '../utils/getAppointmentInfo.js';
+import cancelReservation from '../controllers/cancelReservation.js';
 
 const router = express.Router();
 
@@ -57,6 +58,16 @@ router.post('/get-play-day-info', async (req, res) => {
   const apptInfo = await getAppointmentInfo(appointmentID);
 
   res.json(apptInfo);
+});
+
+router.delete('/cancel-reservation', async (req, res) => {
+  const { date, appointmentID } = req.body;
+  const isCanceled = await cancelReservation(date, appointmentID);
+  if (isCanceled) {
+    res.status(200);
+  } else {
+    res.status(500);
+  }
 });
 
 export default router;

@@ -61,8 +61,20 @@ async function initCancelButton() {
 
   if (appointmentID && date) {
     const cancelButton = document.querySelector('#cancel-reservation a');
-    cancelButton.addEventListener('click', () => {
-      location.replace('/sensory');
+    cancelButton.addEventListener('click', async () => {
+      const response = await fetch(`/sensory/cancel-reservation?id=${appointmentID}&date=${date}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ date, appointmentID })
+      });
+      
+      if (response.ok) {
+        alert('Canceled successfully!')
+      } else {
+        alert('Cancellation failed.')
+      }
     });
   }
 };

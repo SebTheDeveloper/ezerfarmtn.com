@@ -2,8 +2,6 @@ import mongodb from 'mongodb';
 const ObjectID = mongodb.ObjectId;
 
 import { schedule } from '../models/db.js';
-import { config } from 'dotenv';
-config();
 
 export default async function getAppointmentInfo(appointmentID) {
   if (!ObjectID.isValid(appointmentID)) {

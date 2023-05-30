@@ -17,7 +17,7 @@ export default async function confirmAppt ({ name, email, phoneNumber, date, num
           subject: 'Your Upcoming Sensory Play Day on Ezer Farm',
           html: `
             <h1 style="font-family: 'Arial';font-size:18px;">Hi ${name},</h1>
-            <p style="font-family: 'Arial';font-size:18px;">This email is to confirm your scheduled Sensory Play Day for ${numberOfKids} on ${date}.
+            <p style="font-family: 'Arial';font-size:18px;">Your Sensory Play Day for ${numberOfKids} on ${date} has been scheduled successfully
             </p>
             <p style="font-family: 'Arial';font-size:18px;">We look forward to seeing you!</p>
             <br />
@@ -34,13 +34,13 @@ export default async function confirmAppt ({ name, email, phoneNumber, date, num
             ${name} just scheduled a Sensory Play Day on ${date} for ${numberOfKids} kid(s).
             </p>
             <p style="font-family: 'Arial';font-size:18px;">Their email is ${email} and their phone number is <strong>${phoneNumber}</strong></p>
-            <a href="mailto:${email}" style="font-family: 'Arial';font-size:16px;">Click to send them an email</a>
-            <br />
             <a href="tel:${phoneNumber}" style="font-family: 'Arial';font-size:16px;">Click to call them</a>
+            <br />
+            <a href="mailto:${email}" style="font-family: 'Arial';font-size:16px;">Click to send them an email</a>
             <br />
           `
         });
-        console.log(`Appointment confirmation emails for ${name} at ${email} sent successfully!`);
+        console.log(`Appointment confirmation emails for ${name} at ${email} sent successfully`);
 
         return documentID;
       } else {
@@ -49,6 +49,6 @@ export default async function confirmAppt ({ name, email, phoneNumber, date, num
 
     }
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error('Error sending confirmation email:', error);
   }
 };
