@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import confirmAppt from '../controllers/confirmAppt.js';
 import getAppointmentInfo from '../utils/getAppointmentInfo.js';
+import getAvailablePlayDays from '../utils/getAvailablePlayDays.js';
 import cancelReservation from '../controllers/cancelReservation.js';
 
 const router = express.Router();
@@ -41,6 +42,16 @@ router.post('/schedule', async (req, res) => {
   }
 });
 
+
+router.get('/get-available-play-days', async (req, res) => {
+  const availablePlayDays = await getAvailablePlayDays();
+  if (availablePlayDays) {
+    res.json(availablePlayDays);
+  } else {
+  res.status(500).json({ message: 'Error fetching available Play Days' });
+  }
+});
+
 router.get('/scheduled-successfully', (req, res) => {
   res.sendFile(join(__dirname, '../../frontend/views/successful-scheduling.html'));
 });
@@ -64,9 +75,9 @@ router.delete('/cancel-reservation', async (req, res) => {
   const { date, appointmentID } = req.body;
   const isCanceled = await cancelReservation(date, appointmentID);
   if (isCanceled) {
-    res.status(200);
+    res.status(200).send({ message: 'Reservation cancelled successfully' });
   } else {
-    res.status(500);
+    res.status(500).send({ message: 'Error cancelling reservation' });
   }
 });
 

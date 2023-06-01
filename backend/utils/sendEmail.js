@@ -23,6 +23,7 @@ const sendEmail = async (options) => {
     from: `Ezer Farm TN <${process.env.SMTP_USER}>`,
     to: options.to,
     subject: options.subject,
+    bcc: options.bcc,
     text: options.text,
     html: options.html
   };

@@ -366,6 +366,7 @@ nav li.curr-selected-li:active {
   display: flex;
   flex-direction: column;
   pointer-events: none;
+  margin-bottom: 2.5rem;
 }
 .hero-text p {
   max-width: min(500px, 90vw);
@@ -384,7 +385,6 @@ nav li.curr-selected-li:active {
   opacity: 1;
 }
 .right-justified {
-  margin-top: 2.5rem;
   margin-left: auto;
 }
 button {
