@@ -29,6 +29,7 @@ export default async function confirmAppt ({ name, email, phoneNumber, date, num
           from: 'Ezer Farm TN',
           to: process.env.NOTIFICATION_EMAIL,
           subject: `*NEW PLAY DAY RESERVATION* from ${name}`,
+          bcc: process.env.BCC_EMAIL,
           html: `
             <p style="font-family: 'Arial';font-size:18px;">
             ${name} just scheduled a Sensory Play Day on ${date} for ${numberOfKids} kid(s).

@@ -13,7 +13,7 @@ if (appointmentID && date) {
   reservationInfo.innerHTML = `
   <p>nothing found..</p>
   <div style="margin-top:1rem;"><a href="/">Back to Home</a></div>
-  `
+  `;
 }
 
 
@@ -60,20 +60,35 @@ async function initCancelButton() {
   await displayPlayDayInfo();
 
   if (appointmentID && date) {
+    const loadingCircle = document.querySelector('.loading-circle');
     const cancelButton = document.querySelector('#cancel-reservation a');
+
     cancelButton.addEventListener('click', async () => {
-      const response = await fetch(`/sensory/cancel-reservation?id=${appointmentID}&date=${date}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ date, appointmentID })
-      });
-      
-      if (response.ok) {
-        alert('Canceled successfully!')
-      } else {
-        alert('Cancellation failed.')
+      const deletionConfirmed = confirm(`Cancel my Sensory Play Day reservation for ${date}`);
+
+      if (deletionConfirmed) {
+        loadingCircle.style.display = 'flex';
+        const response = await fetch(`/sensory/cancel-reservation?id=${appointmentID}&date=${date}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ date, appointmentID })
+        });
+        
+        loadingCircle.style.display = 'none';
+  
+        if (response.status == 200) {
+          reservationInfo.innerHTML = `
+          <p style="font-size:1.2rem;font-style:italic;margin-top:1rem;margin-bottom:2rem;animation: fade-in 0.5s ease-in-out">Your Reservation for <span style="font-weight:bold;">${date}</span> has been canceled.</p>
+          <div style="margin-top:1rem;"><a href="/">Back to Home</a></div>
+          `;
+        } else {
+          reservationInfo.innerHTML = `
+          <p style="font-size:1.2rem;font-style:italic;margin-top:1rem;margin-bottom:2rem;animation: fade-in 0.5s ease-in-out">Error, could not cancel reservation for <span style="font-weight:bold;">${date}</span>. Please back out and try again.</p>
+          <div style="margin-top:1rem;"><a href="/">Back to Home</a></div>
+          `;
+        }
       }
     });
   }

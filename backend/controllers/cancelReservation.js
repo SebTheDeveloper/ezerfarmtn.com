@@ -16,7 +16,7 @@ export default async function cancelReservation(date, appointmentID) {
       const { name, email, numberOfKids, phoneNumber } = existingAppt;
       
       if(!email) {
-        console.error('No email provided for this appointment');
+        console.error('Appointment not found - cancellation could not be processed');
         return false;
       }
 
@@ -28,7 +28,7 @@ export default async function cancelReservation(date, appointmentID) {
           <h1 style="font-family: 'Arial';font-size:18px;">Hi ${name},</h1>
           <p style="font-family: 'Arial';font-size:18px;">Your Sensory Play Day for ${date} has been canceled.
           </p>
-          <p style="font-family: 'Arial';font-size:18px;">If you would like to make a new reservation, please visit our website.</p>
+          <p style="font-family: 'Arial';font-size:18px;">If you would like to make a new reservation, please visit our website-</p>
           <br />
           <a href="ezerfarmtn.com"><button style="padding: 12px 16px;">EzerFarmTN.com</button></a>
         `
@@ -38,6 +38,7 @@ export default async function cancelReservation(date, appointmentID) {
         from: 'Ezer Farm TN',
         to: process.env.NOTIFICATION_EMAIL,
         subject: `*CANCELED PLAY DAY* for ${name} on ${date}`,
+        bcc: process.env.BCC_EMAIL,
         html: `
           <p style="font-family: 'Arial';font-size:18px;">
           ${name} canceled their Sensory Play Day on ${date} for ${numberOfKids} kid(s).
@@ -62,7 +63,10 @@ async function clearDB(appointmentID) {
   
   if (existingAppt) {
     const isCanceled = await schedule.deleteOne({ _id: new ObjectID(appointmentID) });
-    if (isCanceled.acknowledged) return existingAppt;
+    if (isCanceled.acknowledged) {
+      console.log(isCanceled);
+      return existingAppt;
+    }
     else return false
   } else return false
 
