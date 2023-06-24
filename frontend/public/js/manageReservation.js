@@ -35,7 +35,7 @@ async function getPlayDayInfo() {
 };
 
 async function displayPlayDayInfo() {
-  const { name, email, phoneNumber, numberOfKids, date } = await getPlayDayInfo();
+  const { name, email, phoneNumber, kidsAttending, numberOfKids, date } = await getPlayDayInfo();
   if (name) {
     reservationInfo.innerHTML = `
     <p><strong>Name:</strong> ${name}</p>

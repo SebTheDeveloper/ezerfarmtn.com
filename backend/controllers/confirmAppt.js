@@ -3,12 +3,12 @@ import scheduleAppointment from '../utils/scheduleAppointment.js';
 import { config } from 'dotenv';
 config();
 
-export default async function confirmAppt ({ name, email, phoneNumber, date, numberOfKids }) {
+export default async function confirmAppt ({ name, email, phoneNumber, date, kidsAttending, numberOfKids }) {
   try {
 
     if (Number(numberOfKids) !== 0) {
-
-      const documentID = await scheduleAppointment({ name, email, phoneNumber, date, numberOfKids });
+      
+      const documentID = await scheduleAppointment({ name, email, phoneNumber, date, kidsAttending, numberOfKids });
 
       if (documentID) {
         await sendEmail({
@@ -35,6 +35,7 @@ export default async function confirmAppt ({ name, email, phoneNumber, date, num
             ${name} just scheduled a Sensory Play Day on ${date} for ${numberOfKids} kid(s).
             </p>
             <p style="font-family: 'Arial';font-size:18px;">Their email is ${email} and their phone number is <strong>${phoneNumber}</strong></p>
+            <br />
             <a href="tel:${phoneNumber}" style="font-family: 'Arial';font-size:16px;">Click to call them</a>
             <br />
             <a href="mailto:${email}" style="font-family: 'Arial';font-size:16px;">Click to send them an email</a>

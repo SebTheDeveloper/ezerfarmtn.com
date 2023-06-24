@@ -371,6 +371,7 @@ nav li.curr-selected-li:active {
 .hero-text p {
   max-width: min(500px, 90vw);
   color: rgb(var(--offWhite));
+  opacity: 0.9;
 }
 .hero-img {
   display: none;
@@ -692,6 +693,70 @@ footer img {
   transition: all 0.2s ease-in-out;
   border-radius: 5px;
 }
+#kidsAttending {
+  font-family: var(--titleFont);
+  width: 100%;
+}
+.addKidInfo {
+  font-size: 0.95em;
+  gap: 0.5rem;
+  transition: all 0.1s ease-in-out;
+}
+.addKidInfo, .kidInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.addKidInfo svg {
+  max-width: 25px;
+  opacity: 0.85;
+}
+.addKidInfo:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
+.addKidInfo:hover svg {
+  opacity: 1;
+}
+.addKidInfo:hover p {
+  color: rgb(var(--blue));
+}
+.kidInfo {
+  position: relative;
+  padding: 0rem 1rem;
+  margin: 1rem 2rem 2rem 2rem;
+  gap: 0.5rem;
+}
+.kidInfo::before {
+  position: absolute;
+  opacity: 0.9;
+  content: 'Enter';
+  margin-left: -1.75rem;
+  left: 0;
+  font-size: 0.8em;
+}
+.kidInfo .delete {
+  cursor: pointer;
+  position: absolute;
+  opacity: 0.9;
+  color: rgb(var(--red));
+  margin-right: -2rem;
+  right: 0;
+  font-size: 0.8em;
+}
+.kidInfo .delete:hover {
+  transform: scale(1.05);
+  font-weight: bold;
+}
+.kidsName, .kidsAge {
+  animation: zoom-fade-in 0.2s ease-in-out;
+}
+@keyframes zoom-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
 .appointment button {
   font-size: 1.1em;
   font-weight: bold;
@@ -766,6 +831,9 @@ footer img {
   }
   #selected-play-day {
     display: inline-block;
+  }
+  .kidInfo {
+    margin: 1rem 4rem 2rem 4rem;
   }
 }
 
@@ -848,5 +916,8 @@ footer img {
   }
   .h2 {
     line-height: 3rem;
+  }
+  .kidInfo .delete {
+    margin-right: -2.25rem;
   }
 }

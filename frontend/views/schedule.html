@@ -29,7 +29,7 @@
 
         <ul>
           <li data-index="0" id="first-li"><a href="/sensory">Home</a></li>
-          <li data-index="1"><a href="mailto:ezerfarm@yahoo.com">Contact Us</a></li>
+          <li data-index="1"><a href="mailto:ezerfarm143@gmail.com">Contact Us</a></li>
           <li data-index="2" class="curr-selected-li session-li"><a href="/sensory/schedule">Schedule a Session</a></li>
           <li data-index="3"><a href="/sensory#about">Learn More</a></li>
           <li data-index="4" id="exit-sidebar">Exit</li>
@@ -51,7 +51,7 @@
   <main>
     <div class="appointment">
       <div class="background-overlay"></div>
-      <form action="/sensory/schedule" method="post">
+      <form action="/" method="post">
         <div class="form-title">
           <h2>
             Schedule a <span id="blue">P</span><span id="green">l</span><span id="light-purple">a</span><span id="yellow">y</span> <span id="brown">D</span><span id="light-purple">a</span><span id="blue">y</span>
@@ -59,26 +59,33 @@
         </div>
         <div class="inputs">
           <label for="name">Your Name</label>
-          <input required type="text" id="name" placeholder="Your Full Name" name="name">
-        </div>
-        <div class="inputs">
-          <label for="numberOfKids">Number of Kids Attending</label>
-          <input required type="number" id="numberOfKids" placeholder="Enter a Number" name="numberOfKids">
-        </div>
-        <div class="inputs">
-          <label for="email">Your Email</label>
-          <input required type="email" id="email" placeholder="Your Email Address" name="email">
-        </div>
-        <div class="inputs">
-          <label for="phoneNumber">Your Phone Number</label>
-          <input required type="text" id="phoneNumber" placeholder="Your Phone Number" name="phoneNumber" minlength="10" maxlength="11">
+          <input required type="text" id="name" placeholder="Enter your full name">
         </div>
         <div class="inputs">
           <label for="date">Choose a Play Day</label>
-          <select required name="date" id="date">
-            <!-- <option value="6-1-2023">Thursday, June 1st 2023</option>
-            <option value="6-23-2023">Friday, June 23rd 2023</option> -->
+          <select required id="date">
           </select>
+        </div>
+        <div class="inputs">
+          <label for="email">Your Email</label>
+          <input required type="email" id="email" placeholder="Enter your email address">
+        </div>
+        <div class="inputs">
+          <label for="phoneNumber">Your Phone Number</label>
+          <input required type="text" id="phoneNumber" placeholder="Enter your phone number" minlength="10" maxlength="11">
+        </div>
+        <div class="inputs">
+          <label style="margin-top: 1rem;">Kids Attending</label>
+          <div id="kidsAttending">
+            <div class="kidInfo">
+              <input required type="text" class="kidsName" style="border-radius: 1px" placeholder="Name" />
+              <input required type="number" min="1" class="kidsAge" style="border-radius: 1px" placeholder="Age" />
+            </div>
+            <div class="addKidInfo">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,19V5H5V19H19M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5C3,3.89 3.9,3 5,3H19M11,7H13V11H17V13H13V17H11V13H7V11H11V7Z" /></svg>
+              <p>click to add a child</p>
+            </div>
+          </div>
         </div>
         <button type="submit">SUBMIT</button>
       </form>
@@ -86,7 +93,7 @@
   </main>
   <footer id="about">
     <a href="/sensory"><img src="../images/ezer-farm-logo-324x409.png" alt="Ezer Farm Logo" class="logo"></a>
-    <p style="font-size: 0.8em;">Have Questions? <span style="font-weight: bold;margin-left: 1rem;"><a href="mailto:ezerfarm@yahoo.com">Send Us an Email</a></span></p>
+    <p style="font-size: 0.8em;">Have Questions? <span style="font-weight: bold;margin-left: 1rem;"><a href="mailto:ezerfarm143@gmail.com">Send Us an Email</a></span></p>
     <p>Copyright © 2023 - Ezer Farm TN</p>
   </footer>
 </body>

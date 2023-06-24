@@ -25,20 +25,25 @@ router.post('/schedule', async (req, res) => {
   const phoneNumber = req.body.phoneNumber;
   const date = req.body.date;
   const numberOfKids = req.body.numberOfKids;
+  const kidsAttending = req.body.kidsAttending;
 
   const apptInformation = {
     name,
     email,
     phoneNumber,
     date,
-    numberOfKids,
+    kidsAttending,
+    numberOfKids
   };
 
   const documentID = await confirmAppt(apptInformation);
   if (documentID) {
-    res.status(200).redirect(`/sensory/scheduled-successfully?id=${documentID}&date=${date}`);
+    res.status(200).json({ id: documentID });
   } else {
-    res.status(400).redirect('/sensory/nothing-available')
+    res.status(409).json({
+      id: null,
+      message: 'Scheduling conflict, this day is full'
+    });
   }
 });
 

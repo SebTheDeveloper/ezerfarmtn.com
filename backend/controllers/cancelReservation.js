@@ -30,7 +30,7 @@ export default async function cancelReservation(date, appointmentID) {
           </p>
           <p style="font-family: 'Arial';font-size:18px;">If you would like to make a new reservation, please visit our website-</p>
           <br />
-          <a href="ezerfarmtn.com"><button style="padding: 12px 16px;">EzerFarmTN.com</button></a>
+          <a href="ezerfarmtn.com/sensory/schedule"><button style="padding: 12px 16px;">EzerFarmTN.com</button></a>
         `
       });
 
