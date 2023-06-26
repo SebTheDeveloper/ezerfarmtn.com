@@ -9,9 +9,6 @@ main {
   margin-bottom: 1.5rem;
   width: min(100%, 500px);
 }
-.box:hover {
-  transform: scale(1.01);
-}
 .box h3 {
   font-size: 1.35rem;
 }
@@ -24,12 +21,25 @@ main {
   display: block;
   margin: 0.5rem 0;
 }
+.kidsAttending {
+  font-weight: 300;
+  display: block;
+  margin-left: 1rem;
+  margin-top: 0.2rem;
+}
+.kidsAttending:first-of-type {
+  margin-top: 0.5rem;
+}
+.kidsAttending:last-of-type {
+  margin-bottom: 0.5rem;
+}
 #cancel-reservation {
   margin-top: 2rem;
   transition: all 0.1s ease-in-out;
 }
 #cancel-reservation:hover {
   text-shadow: 0 0 1px rgb(var(--red));
+  transform: scale(1.01);
 }
 #cancel-reservation a {
   cursor: pointer;

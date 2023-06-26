@@ -1,0 +1,139 @@
+body {
+  --bg: #d8d8d8;
+  background-color: var(--bg);
+}
+.box {
+  display: grid;
+  align-items: center;
+  gap: 1rem;
+  background-color: hsl(0, 0%, 96%);
+  box-shadow: 0 1px 7px rgba(0, 0, 0, 0.3);
+  min-width: 70vw;
+}
+.admin-dash {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.3em;
+  padding: 0 2.5rem;
+  text-align: center;
+  width: 100%;
+}
+.admin-section {
+  --bRadius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 1rem;
+  padding: 1.5rem;
+  border: 1px dotted black;
+  border-radius: var(--bRadius);
+  box-shadow: 0 0 6px rgba(0,0,0,0.2);
+  transition: all 0.2s ease-in-out;
+}
+.admin-section:hover {
+  transform: scale(1.01);
+}
+#available-days-info {
+  margin-top: 1rem;
+}
+#available-days-info h4 {
+  margin-bottom: 0.75em;
+}
+.disclaimer {
+  padding: 0.5em 1.5em;
+  font-size:0.9em;
+  opacity:0.9;
+}
+#available-days-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5em;
+}
+.available-day {
+  font-size: 0.9em;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  padding: 0.75em;
+  border: 1px solid black;
+  border-radius: calc(var(--bRadius) - (var(--bRadius) / 2));
+}
+#deleteReservation {
+  border-left: 1px solid rgb(var(--blue));
+  margin-left: 0.5em;
+  padding-left: 0.5em;
+  color: rgb(var(--red));
+  opacity: 0.9;
+}
+#deleteReservation:hover {
+  cursor: pointer;
+}
+.addPlayDay {
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95em;
+  gap: 0.5rem;
+  transition: all 0.1s ease-in-out;
+}
+.addPlayDay svg {
+  max-width: 25px;
+  opacity: 0.85;
+}
+.addPlayDay:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
+.addPlayDay:hover svg {
+  opacity: 1;
+}
+.addPlayDay:hover p {
+  color: rgb(var(--blue));
+}
+
+#reservations-info {
+  gap: 0.5em;
+}
+#selectedDate {
+  padding: 0.5em;
+  border-radius: var(--bRadius);
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+#attendance {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 2.5em;
+}
+#attendance div {
+  flex-grow: 1;
+}
+.attendeeInfo {
+  background-color: #efefef;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  text-align: start;
+  line-height: 1.1em;
+  font-size: 0.9em;
+  gap: 0.5em;
+  border: 1px solid black;
+  padding: 1em;
+  margin: 0.75em 0;
+}
+@media screen and (min-width: 1300px) {
+  .box {
+    min-width: 50vw;
+  }
+  #available-days-list {
+    grid-template-columns: 1fr 1fr;
+  }
+  .disclaimer {
+    max-width: 60%;
+  }
+}

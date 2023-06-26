@@ -5,6 +5,8 @@ import confirmAppt from '../controllers/confirmAppt.js';
 import getAppointmentInfo from '../utils/getAppointmentInfo.js';
 import getAvailablePlayDays from '../utils/getAvailablePlayDays.js';
 import cancelReservation from '../controllers/cancelReservation.js';
+import authenticateUser from '../utils/authenticateUser.js';
+import getAttendance from '../utils/getAttendance.js';
 
 const router = express.Router();
 
@@ -83,6 +85,19 @@ router.delete('/cancel-reservation', async (req, res) => {
     res.status(200).send({ message: 'Reservation cancelled successfully' });
   } else {
     res.status(500).send({ message: 'Error cancelling reservation' });
+  }
+});
+
+router.get('/admin', authenticateUser(), (req, res) => {
+  res.sendFile(join(__dirname, '../../frontend/views/admin.html'));
+});
+
+router.post('/admin/get-attendance', authenticateUser(), async (req, res) => {
+  const attendance = await getAttendance(req.body.date);
+  if (attendance) {
+    res.json(attendance);
+  } else {
+  res.status(404).json({ message: 'Error fetching available Play Days' });
   }
 });
 

@@ -10,7 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;600;700&family=Poppins:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/index.css">
   <link rel="stylesheet" href="../css/manage-reservation.css">
+  <link rel="stylesheet" href="../css/admin-dashboard.css">
   <script defer src="../js/sensory.js"></script>
+  <script defer src="../js/adminDashboard.js"></script>
   <title>Admin Dashboard - Sensory Play Days</title>
 </head>
 <body id="top">
@@ -49,18 +51,17 @@
     </aside>
   </header>
   <main>
-    <div class="section hidden" style="align-items: center;text-align: center;">
+    <div class="admin-dash" style="align-items: center;text-align: center;width: 100%;">
       <div class="box">
-        <h3>Admin Dashboard</h3>
-        <div id="reservation-info"></div>
+        <h3 style="font-size: 1.75em;text-decoration: underline;">Admin Dashboard</h3>
+        <div id="available-days-info" class="admin-section"></div>
+        <div id="reservations-info" class="admin-section"></div>
       </div>
-      <a href="/sensory/schedule" style="text-decoration: underline;font-weight: bold;" id="go-back">Go Back</a>
     </div>
   </main>
   <footer id="about">
     <a href="/sensory"><img src="../images/ezer-farm-logo-324x409.png" alt="Ezer Farm Logo" class="logo"></a>
-    <p style="font-size: 0.8em;">Have Questions? <span style="font-weight: bold;margin-left: 1rem;"><a href="mailto:ezerfarm143@gmail.com">Send Us an Email</a></span></p>
-    <p>Copyright © 2023 - Ezer Farm TN</p>
+    <p style="font-size: 0.9em;line-height: 1.75em;padding: 0 5rem;text-align: center;">This is a management dashboard for admin access only. You're able to manage all of the scheduled play days and edit what is available. If you make a mistake, don't worry. There is a backup database so lost data can always be recovered.</p>
   </footer>
 </body>
 </html>

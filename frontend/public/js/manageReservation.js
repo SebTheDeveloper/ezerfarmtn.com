@@ -37,11 +37,17 @@ async function getPlayDayInfo() {
 async function displayPlayDayInfo() {
   const { name, email, phoneNumber, kidsAttending, numberOfKids, date } = await getPlayDayInfo();
   if (name) {
+    let childrenAttending = '';
+    for (kid of kidsAttending) {
+      childrenAttending += `<span class="kidsAttending"><span style="font-weight:500;opacity: 0.95">Name:</span> ${kid.name} <span style="font-weight:500;opacity: 0.95">&nbsp Age:</span> ${kid.age}</span>`
+    }
+
     reservationInfo.innerHTML = `
     <p><strong>Name:</strong> ${name}</p>
     <p><strong>Email:</strong> ${email}</p>
     <p><strong>Phone Number:</strong> ${phoneNumber}</p>
     <p><strong>Number of Kids Attending:</strong> ${numberOfKids}</p>
+    <p><strong>Children Attending:</strong> ${childrenAttending}</p>
     <p><strong>Date:</strong> ${date}</p>
     <div id="cancel-reservation"><a>Cancel Reservation</a></div>`;
   } else {

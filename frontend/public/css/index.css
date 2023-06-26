@@ -869,6 +869,12 @@ footer img {
     max-width: 90vw;
     align-items: center;
   }
+  .box .admin-section {
+    margin: 0 3rem;
+  }
+  #available-days-list .available-day {
+    font-size: 1em;
+  }
 }
 
 @media screen and (min-width: 1000px) {

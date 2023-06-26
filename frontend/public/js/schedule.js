@@ -68,14 +68,25 @@ async function getAvailablePlayDays() {
 
   let selectInnerText = '';
 
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
   for (playDay of availablePlayDays) {
-    selectInnerText += `
-    <option value="${playDay.date}">${playDay.label}</option>
-    `;
+    const playDayDate = parseDate(playDay.date);
+    
+    if(playDayDate >= today) {
+      selectInnerText += `
+      <option value="${playDay.date}">${playDay.label}</option>
+      `;
+    }
   }
 
   datesAvailableDropdown.innerHTML = selectInnerText;
-  
+}
+
+function parseDate(str) {
+  var parts = str.split('-');
+  return new Date(parts[2], parts[0] - 1, parts[1]);
 }
 
 getAvailablePlayDays();
