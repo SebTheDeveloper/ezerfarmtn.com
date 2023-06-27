@@ -1,5 +1,9 @@
 const reservationsInfo = document.getElementById('reservations-info');
 const availableDaysInfo = document.getElementById('available-days-info');
+const loadingCircle = document.querySelector('.loading-circle');
+const addPlayDayModal = document.getElementById('add-play-day-modal')
+const newPlayDayForm = document.getElementById('new-play-day-form')
+
 let currentSelectedDate = '';
 let initialLoad = true;
 
@@ -11,7 +15,7 @@ async function getAndDisplayData() {
     initialLoad = false;
   }
 
-  const playDayDivs = playDays.map(playDay => `<div class="available-day" data-date="${playDay.date}"><div>${playDay.label}</div><div id="deleteReservation">Delete</div></div>`).join('');
+  const playDayDivs = playDays.map(playDay => `<div class="available-day" data-date="${playDay.date}"><div style="margin-right: 0.5em;">${playDay.label}</div><div id="deleteReservation">Delete</div></div>`).join('');
   const playDayOptions = playDays.map(playDay => `<option value="${playDay.date}">${playDay.label}</option>`).join('');
   
   availableDaysInfo.innerHTML = `
@@ -23,6 +27,89 @@ async function getAndDisplayData() {
     </div>
     <div id="available-days-list">${playDayDivs}</div>
   `;
+
+  document.getElementById('x').addEventListener('click', () => {
+    addPlayDayModal.style.display = 'none';
+  });
+  
+  const addPlayDay = document.querySelector('.addPlayDay');
+  addPlayDay.addEventListener('click', () => {
+    addPlayDayModal.style.display = 'flex';
+  });
+
+  newPlayDayForm.querySelector('button').addEventListener('click', () => {
+    const newMonth = newPlayDayForm.querySelector('#month');
+    const monthLabel = newMonth.options[newMonth.selectedIndex];
+    const newDay = newPlayDayForm.querySelector('#day');
+    const nthDay = newDay.options[newDay.selectedIndex];
+    const newYear = newPlayDayForm.querySelector('#year');
+    const newDate = `${newMonth.value}-${newDay.value}-${newYear.value}`;
+
+    const selectedDate = new Date(newYear.value, newMonth.value - 1, newDay.value);
+    const dayOfWeek = selectedDate.getDay();
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    const newLabel = `${days[dayOfWeek]}, ${monthLabel.dataset.label} ${nthDay.dataset.nth}`;
+    
+    const isConfirmed = confirm(`Are you sure you want to add a new play day for ${newDate}? (${newLabel}, ${newYear.value})`);
+
+    if (isConfirmed) {
+      loadingCircle.style.display = 'flex';
+      fetch('/sensory/admin/add-available-play-day', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ date: newDate, label: newLabel })
+      })
+        .then(response => response.json())
+        .then(confirmation => {
+          if (confirmation.isAdded) {
+            console.log(confirmation);
+            loadingCircle.style.display = 'none';
+          }
+        })
+        .catch(err => {
+          console.log(`ERROR ADDING AVAILABLE PLAY DAY: ${err}`);
+          alert('Something went wrong. Unable to add play day. Please try again.');
+        })
+        .finally(resolve => {
+          window.location.href = '/sensory/admin';
+        })
+    }
+
+  });
+
+  const availableDays = document.querySelectorAll('.available-day');
+
+  availableDays.forEach(day => {
+    day.querySelector('#deleteReservation').addEventListener('click', () => {
+      const areYouSure = confirm(`Are you sure you want to remove ${day.dataset.date} from the list of available play days?`);
+      if (areYouSure) {
+        loadingCircle.style.display = 'flex';
+        fetch('/sensory/admin/delete-available-play-day', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ date: day.dataset.date })
+        })
+          .then(response => response.json())
+          .then(confirmation => {
+            if (confirmation.isDeleted) {
+              console.log(confirmation);
+              day.style.display = 'none';
+              loadingCircle.style.display = 'none';
+            }
+          })
+          .catch(err => {
+            console.log(`ERROR DELETING AVAILABLE PLAY DAY: ${err}`);
+            alert('Something went wrong. Unable to cancel play day. Please try again.');
+            window.location.href = '/sensory/admin';
+          });
+      }
+    });
+  });
   
   const playDayAttendance = await getAttendance(currentSelectedDate);
   
@@ -64,7 +151,6 @@ async function getAttendance(playDate) {
       }
 
       const data = await response.json();
-      console.log(data)
 
       const playDayAttendance = data.map(reservation => `<div class="attendeeInfo">
       <div><strong>Name:</strong>&nbsp ${reservation.name}</div>
@@ -72,7 +158,11 @@ async function getAttendance(playDate) {
       <div><strong>Date:</strong>&nbsp ${reservation.date}</div>
       <div><strong>Phone Number:</strong>&nbsp <a style="color:rgb(var(--blue))" href="tel:${reservation.phoneNumber}">${reservation.phoneNumber}</a></div>
       <div><strong>Number of Kids:</strong>&nbsp ${reservation.numberOfKids}</div>
-      <div><strong>Kids Attending:</strong>&nbsp ${reservation.kidsAttending.map(kid => kid.name).join(', ')}</div>
+      <div><strong>Kids Attending:</strong>&nbsp ${reservation.kidsAttending.map(kid => {
+        const childInfo = `${kid.name} <i>(age ${kid.age})</i>`;
+        return childInfo;
+      }).join(', ')}</div>
+      <a href="/sensory/manage-reservation?id=${reservation._id}&date=${reservation.date}&admin=true"><button>Manage Reservation</button></a>
       </div>`).join('');
 
       return playDayAttendance;

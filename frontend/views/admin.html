@@ -19,6 +19,88 @@
   <div class="loading-circle">
     <div class="load-wheel"></div>
   </div>
+  <div id="add-play-day-modal">
+    <div id="new-play-day-form">
+      <div id="x">x</div>
+      <h3 style="margin-bottom: 2.5rem;font-size: 1.25rem;">Add a New Play Day</h3>
+      <div>
+        <div class="new-play-day-options">
+          <label for="month">Month</label>
+          <select id="month">
+            <option value="01" data-label="January">January</option>
+            <option value="02" data-label="February">February</option>
+            <option value="03" data-label="March">March</option>
+            <option value="04" data-label="April">April</option>
+            <option value="05" data-label="May">May</option>
+            <option value="06" data-label="June">June</option>
+            <option value="07" data-label="July">July</option>
+            <option value="08" data-label="August">August</option>
+            <option value="09" data-label="September">September</option>
+            <option value="10" data-label="October">October</option>
+            <option value="11" data-label="November">November</option>
+            <option value="12" data-label="December">December</option>
+          </select>
+        </div>
+        <div class="new-play-day-options">
+          <label for="day">Day</label>
+          <select id="day">
+            <option value="01" data-nth="1st">1</option>
+            <option value="02" data-nth="2nd">2</option>
+            <option value="03" data-nth="3rd">3</option>
+            <option value="04" data-nth="4th">4</option>
+            <option value="05" data-nth="5th">5</option>
+            <option value="06" data-nth="6th">6</option>
+            <option value="07" data-nth="7th">7</option>
+            <option value="08" data-nth="8th">8</option>
+            <option value="09" data-nth="9th">9</option>
+            <option value="10" data-nth="10th">10</option>
+            <option value="11" data-nth="11th">11</option>
+            <option value="12" data-nth="12th">12</option>
+            <option value="13" data-nth="13th">13</option>
+            <option value="14" data-nth="14th">14</option>
+            <option value="15" data-nth="15th">15</option>
+            <option value="16" data-nth="16th">16</option>
+            <option value="17" data-nth="17th">17</option>
+            <option value="18" data-nth="18th">18</option>
+            <option value="19" data-nth="19th">19</option>
+            <option value="20" data-nth="20th">20</option>
+            <option value="21" data-nth="21st">21</option>
+            <option value="22" data-nth="22nd">22</option>
+            <option value="23" data-nth="23rd">23</option>
+            <option value="24" data-nth="24th">24</option>
+            <option value="25" data-nth="25th">25</option>
+            <option value="26" data-nth="26th">26</option>
+            <option value="27" data-nth="27th">27</option>
+            <option value="28" data-nth="28th">28</option>
+            <option value="29" data-nth="29th">29</option>
+            <option value="30" data-nth="30th">30</option>
+            <option value="31" data-nth="31st">31</option>
+          </select>
+        </div>
+        <div class="new-play-day-options">
+          <label for="year">Year</label>
+          <select id="year">
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+            <option value="2029">2029</option>
+            <option value="2030">2030</option>
+            <option value="2031">2031</option>
+            <option value="2032">2032</option>
+            <option value="2033">2033</option>
+            <option value="2034">2034</option>
+            <option value="2035">2035</option>
+          </select>
+        </div>
+        <div style="display: flex;justify-content: center;">
+          <button>Add Date</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <header>
     <a href="/sensory" class="header-left-logo"><img src="../images/logo-no-background.svg" alt="Ezer Farm TN Logo" id="logo"></a>
     <label class="hamburger-menu">
@@ -61,7 +143,7 @@
   </main>
   <footer id="about">
     <a href="/sensory"><img src="../images/ezer-farm-logo-324x409.png" alt="Ezer Farm Logo" class="logo"></a>
-    <p style="font-size: 0.9em;line-height: 1.75em;padding: 0 5rem;text-align: center;">This is a management dashboard for admin access only. You're able to manage all of the scheduled play days and edit what is available. If you make a mistake, don't worry. There is a backup database so lost data can always be recovered.</p>
+    <p style="font-size: 0.9em;line-height: 1.75em;padding: 0 5rem;text-align: center;">This is a management dashboard for admin access only. You're able to manage all of the scheduled play days and edit what is available. If you make a mistake, don't worry. There is a backup database, so lost data can always be recovered.</p>
   </footer>
 </body>
 </html>

@@ -5,10 +5,74 @@ body {
 .box {
   display: grid;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
   background-color: hsl(0, 0%, 96%);
   box-shadow: 0 1px 7px rgba(0, 0, 0, 0.3);
   min-width: 70vw;
+}
+#new-play-day-form,
+#add-play-day-modal,
+.new-play-day-options {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#add-play-day-modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(33, 33, 33, 0.6);
+  animation: fade-in 0.2s ease-in-out;
+}
+#new-play-day-form {
+  position: relative;
+  padding-top: 5rem;
+  justify-content: start;
+  height: 350px;
+  width: 350px;
+  background-color: white;
+  border-radius: 10px;
+}
+#new-play-day-form #x {
+  cursor: pointer;
+  color: rgb(var(--red));
+  font-size: 1.6rem;
+  font-weight: bold;
+  opacity: 0.85;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 1.5rem;
+  margin-right: 2rem;
+}
+#new-play-day-form #x:hover {
+  transform: scale(1.05);
+}
+.new-play-day-options {
+  display: inline-flex;
+  gap: 0.25rem;
+  margin: 0 0.5rem;
+  margin-bottom: 2.5rem;
+}
+.new-play-day-options select {
+  padding: 0.4rem;
+}
+#new-play-day-form button {
+  display: block;
+  background-color: #f6f6f6;
+  font-weight: bold;
+  color: rgb(var(--blue));
+  border: 2px solid rgb(var(--blue));
+  border-radius: 7px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+#new-play-day-form button:hover {
+  transform: scale(1.02);
 }
 .admin-dash {
   display: flex;
@@ -49,10 +113,12 @@ body {
 #available-days-list {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.5em;
+  gap: 0.7em;
+  animation: fade-in 0.3s ease-in-out;
 }
 .available-day {
   font-size: 0.9em;
+  line-height: 1.25em;
   display: grid;
   grid-template-columns: 2fr 1fr;
   padding: 0.75em;
@@ -61,13 +127,13 @@ body {
 }
 #deleteReservation {
   border-left: 1px solid rgb(var(--blue));
-  margin-left: 0.5em;
   padding-left: 0.5em;
   color: rgb(var(--red));
   opacity: 0.9;
 }
 #deleteReservation:hover {
   cursor: pointer;
+  transform: scale(1.03);
 }
 .addPlayDay {
   margin-top: 0.5em;
@@ -119,12 +185,26 @@ body {
   align-items: start;
   flex-direction: column;
   text-align: start;
-  line-height: 1.1em;
+  line-height: 1.25em;
   font-size: 0.9em;
   gap: 0.5em;
   border: 1px solid black;
   padding: 1em;
   margin: 0.75em 0;
+  animation: fade-in 0.3s ease-in-out;
+}
+.attendeeInfo button {
+  margin-top: 0.75em;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  border: 1px solid black;
+  padding: 0.6em 0.7em;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+.attendeeInfo button:hover {
+  color: rgb(var(--offWhite));
+  border-color: rgb(var(--blue));
+  background-color: rgb(30, 30, 30);
 }
 @media screen and (min-width: 1300px) {
   .box {
@@ -135,5 +215,11 @@ body {
   }
   .disclaimer {
     max-width: 60%;
+  }
+  #new-play-day-form {
+    padding-top: 0;
+    justify-content: center;
+    height: 400px;
+    width: 400px;
   }
 }

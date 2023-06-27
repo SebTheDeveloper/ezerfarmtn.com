@@ -7,6 +7,8 @@ import getAvailablePlayDays from '../utils/getAvailablePlayDays.js';
 import cancelReservation from '../controllers/cancelReservation.js';
 import authenticateUser from '../utils/authenticateUser.js';
 import getAttendance from '../utils/getAttendance.js';
+import deleteAvailablePlayDay from '../utils/deleteAvailablePlayDay.js';
+import addAvailablePlayDay from '../utils/addAvailablePlayDay.js';
 
 const router = express.Router();
 
@@ -82,9 +84,9 @@ router.delete('/cancel-reservation', async (req, res) => {
   const { date, appointmentID } = req.body;
   const isCanceled = await cancelReservation(date, appointmentID);
   if (isCanceled) {
-    res.status(200).send({ message: 'Reservation cancelled successfully' });
+    res.status(200).send({ message: 'Reservation canceled successfully' });
   } else {
-    res.status(500).send({ message: 'Error cancelling reservation' });
+    res.status(500).send({ message: 'Error canceling reservation' });
   }
 });
 
@@ -99,6 +101,16 @@ router.post('/admin/get-attendance', authenticateUser(), async (req, res) => {
   } else {
   res.status(404).json({ message: 'Error fetching available Play Days' });
   }
+});
+
+router.delete('/admin/delete-available-play-day', authenticateUser(), async (req, res) => {
+  const deletedSuccessfully = await deleteAvailablePlayDay(req.body.date);
+  res.send({ isDeleted: deletedSuccessfully })
+});
+
+router.post('/admin/add-available-play-day', authenticateUser(), async (req, res) => {
+  const addedSuccessfully = await addAvailablePlayDay(req.body.date, req.body.label);
+  res.send({ isAdded: addedSuccessfully })
 });
 
 export default router;

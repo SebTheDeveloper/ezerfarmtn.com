@@ -4,9 +4,14 @@ const goBackButton = document.querySelector('#go-back');
 const params = new URLSearchParams(window.location.search);
 const appointmentID = params.get('id');
 const date = params.get('date');
+const admin = params.get('admin');
 
 if (appointmentID && date) {
-  goBackButton.href = `/sensory/scheduled-successfully?id=${appointmentID}&date=${date}`;
+  if (!admin) {
+    goBackButton.href = `/sensory/scheduled-successfully?id=${appointmentID}&date=${date}`;
+  } else {
+    goBackButton.href = '/sensory/admin'
+  }
   initCancelButton();
 } else {
   goBackButton.style.display = 'none';
@@ -70,7 +75,7 @@ async function initCancelButton() {
     const cancelButton = document.querySelector('#cancel-reservation a');
 
     cancelButton.addEventListener('click', async () => {
-      const deletionConfirmed = confirm(`Cancel my Sensory Play Day reservation for ${date}`);
+      const deletionConfirmed = confirm(`Cancel Play Day reserved for ${date}`);
 
       if (deletionConfirmed) {
         loadingCircle.style.display = 'flex';
