@@ -75,7 +75,7 @@ async function initCancelButton() {
     const cancelButton = document.querySelector('#cancel-reservation a');
 
     cancelButton.addEventListener('click', async () => {
-      const deletionConfirmed = confirm(`Cancel Play Day reserved for ${date}`);
+      const deletionConfirmed = confirm(`Are you sure you want to cancel this Play Day reserved for ${date}?`);
 
       if (deletionConfirmed) {
         loadingCircle.style.display = 'flex';
